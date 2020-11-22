@@ -1,0 +1,59 @@
+<div class="container fornt-style">
+    <div class="row">
+        <div class="col-lg-12">
+            SEND US YOUR VALUABLE FEEDBACK!
+        </div>
+    </div>
+    <form [formGroup]="feedback" (ngSubmit)="submitFeedback()">
+        <div class="row mt-5">
+            <div class="col-sm-4">
+
+                <mat-form-field class="full-width ">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name" placeholder="XYZ" value="" required>
+                </mat-form-field>
+
+                <!-- <mat-form-field class="example-full-width">
+                <mat-label>Leave a comment</mat-label>
+                <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+            </mat-form-field> -->
+
+            </div>
+            <div class="col-sm-4">
+                <mat-form-field class="full-width ">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" placeholder="xyz@pqr.com" required>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+                <mat-form-field class="full-width">
+                    <mat-select name="sampleType" formControlName="resident" placeholder="Select Residency" required>
+                        <mat-option *ngFor="let country of countries" [value]="country">
+                            {{country}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+        </div>
+        <div class="row mt-5">
+
+
+            <div class="col-sm-6">
+                <br>
+                <mat-form-field class="full-width">
+                    <mat-label>Leave a comment</mat-label>
+                    <textarea matInput formControlName="comment" placeholder="Your valuable comment"></textarea>
+                </mat-form-field>
+            </div>
+
+
+        </div>
+        <!--Submit button -->
+        <div class="row mt-5">
+            <div class="col-sm-4">
+                <button mat-raised-button color="primary" type="submit" [disabled]="!feedback.valid">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

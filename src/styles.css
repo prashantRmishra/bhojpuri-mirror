@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+/* universal font style */
+*{
+    font-family: monospace !important;
+    font-size: large !important
+}
+/* width of all the tables */
+table{
+    width: 100%;
+    font-family: monospace !important;
+    font-size: large !important
+}
+/* width of all the input fields  */
+.full-width {
+    width: 100%;
+  }
+  

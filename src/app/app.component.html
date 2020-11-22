@@ -1,46 +1,4 @@
 <app-header></app-header>
-<div class="container">
-    <!--Top news section starts -->
-    <div class="row">
-       <div class="col">
-        TOP NEWS
-       </div>
-    </div>
+<router-outlet></router-outlet>
 
-    <div class="row">
-        <div class="col">
-            <mat-grid-list cols="4" rowHeight="100px">
-                <mat-grid-tile *ngFor="let tile of tiles;let i=index" [colspan]="tile.cols" [rowspan]="tile.rows"
-                    [style.background]="tile.color">
-        
-                    <mat-grid-tile-footer>
-                        <h3>This is the footer {{i}}</h3>
-                    </mat-grid-tile-footer>
-                </mat-grid-tile>
-            </mat-grid-list>
-        </div>
-    </div>
-<!--Top news finished-->
-<!--Sport Section -->
-<div class="row">
-    <div class="col">
-     SPORTS
-    </div>
- </div>
-
- <div class="row">
-     <div class="col">
-         <mat-grid-list cols="4" rowHeight="100px">
-             <mat-grid-tile *ngFor="let tile of sportTiles;let i=index" [colspan]="tile.cols" [rowspan]="tile.rows"
-                 [style.background]="tile.color">
-     
-                 <mat-grid-tile-footer>
-                     <h3>This is the footer {{i}}</h3>
-                 </mat-grid-tile-footer>
-             </mat-grid-tile>
-         </mat-grid-list>
-     </div>
- </div>
- <!--Sport Section Finished-->
-</div>
 <!-- <app-footer></app-footer> -->
