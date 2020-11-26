@@ -18,7 +18,10 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator'
 import { HindiSamacharPDFComponent } from './hindi-samachar-pdf/hindi-samachar-pdf.component'
-
+import { HttpClientModule } from '@angular/common/http';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +30,7 @@ import { HindiSamacharPDFComponent } from './hindi-samachar-pdf/hindi-samachar-p
     FeedbackComponent,
     HomeComponent,
     HindiSamacharPDFComponent,
+    PdfViewerComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,10 @@ import { HindiSamacharPDFComponent } from './hindi-samachar-pdf/hindi-samachar-p
     BrowserAnimationsModule,
     MatButtonModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MaterialFileInputModule,
+    HttpClientModule,
+    PdfViewerModule
     
     
     
