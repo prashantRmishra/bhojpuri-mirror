@@ -21,7 +21,7 @@ package com.example.demo.model;
 public class FeedbackModel {
     
     private String name;
-    private String phnone_number;
+    private String resident;
     private String email;
     private String comment;
 
@@ -33,12 +33,12 @@ public class FeedbackModel {
         this.name = name;
     }
 
-    public String getPhnone_number() {
-        return this.phnone_number;
+    public String getResident() {
+        return this.resident;
     }
 
-    public void setPhnone_number(String phnone_number) {
-        this.phnone_number = phnone_number;
+    public void setResident(String resident) {
+        this.resident = resident;
     }
 
     public String getEmail() {

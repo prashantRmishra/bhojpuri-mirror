@@ -19,11 +19,11 @@ public class FeedbackDAOImpl implements FeedbackDAO {
         int result = 0;
         try {
             result += jdbcTemplate.update("insert into feedback values(?,?,?,?)", new Object[] { data.getName(),
-                    data.getEmail() ,data.getComment(),data.getPhnone_number()});
+                    data.getEmail() ,data.getComment(),data.getResident()});
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return result > 0 ? "Success" : "locha ho gya";
+        return result > 0 ? "Success" : "Failure";
     }
 
 }
