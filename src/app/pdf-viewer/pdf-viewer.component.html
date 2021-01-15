@@ -1,12 +1,33 @@
-<div class="container fornt-style">
+<div class="container font-style">
     <div class="row">
-        <div class="col">
-            <pdf-viewer [src]="pdfSrc" [render-text]="true" style="display: block;"></pdf-viewer>
+        <div class="col-sm-6 text-left">
+            <button mat-icon-button matTooltip="Back"
+            (click)="goBack()">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+        </div>
+        <div class="col-sm-6 text-right">
+
+            <button mat-icon-button matTooltip="Options" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item 
+                (click)="downloadHindiSamacharPdf()">
+                    <mat-icon >save_alt</mat-icon>
+                    <span>Download</span>
+                </button>
+                <button mat-menu-item
+                (click)="openInBrowser()">
+                    <mat-icon>open_in_new</mat-icon>
+                    <span>Open in browser</span>
+                </button>
+            </mat-menu>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-12 text-center">
-            <button mat-raised-button color="primary" (click)="goBack()">Go Back</button>
+        <div class="col">
+            <pdf-viewer [src]="pdfSrc" [render-text]="true" style="display: block;"></pdf-viewer>
         </div>
     </div>
 </div>

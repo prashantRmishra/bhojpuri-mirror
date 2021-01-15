@@ -1,44 +1,186 @@
 <div class="container">
-    <!--Top news section starts -->
-    <div class="row">
-       <div class="col">
-        TOP NEWS
-       </div>
-    </div>
 
+    <!--for loop of list of tiles-->
+    <!-- <div *ngFor="let list of listOfTiles;let id=index">
+        <div class="row">
+            <div class="col">{{list[0].section}}</div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-grid-list cols="4" rowHeight="100px" class="shadow p-3 mb-5 bg-white rounded">
+                    <mat-grid-tile *ngFor="let tile of list;let i=index" [colspan]="tile.cols" [rowspan]="tile.rows"
+                        [style.background]="tile.color">
+                        <img [src]="tile.imgSrc" routerLink="/article/{{i}}">
+                        <mat-grid-tile-footer>
+                            <h3><a routerLink="/article/{{i}}">{{tile.text}} of list {{id}}</a></h3>
+                        </mat-grid-tile-footer>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </div>
+        </div>
+    </div> -->
+    <!--inish of for loop of list of tiles-->
+
+    <!--sports section-->
+    <!-- <div class="row">
+        <div class="col">
+            {{sportsList[0].section}}
+        </div>
+    </div>
     <div class="row">
         <div class="col">
-            <mat-grid-list cols="4" rowHeight="100px" class="shadow p-3 mb-5 bg-white rounded">
-                <mat-grid-tile *ngFor="let tile of tiles;let i=index" [colspan]="tile.cols" [rowspan]="tile.rows"
-                    [style.background]="tile.color">
-        
+            <mat-grid-list cols="4" rowHeight="100px">
+                <mat-grid-tile [colspan]="3" [rowspan]="4">
+                    <img [src]="" name="xvb" routerLink="/article/1">
                     <mat-grid-tile-footer>
-                        <h3>This is the footer {{i}}</h3>
+                        <h3><a routerLink="/article/1">sdfghgfds</a></h3>
+                    </mat-grid-tile-footer>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="sportsList[1].cols" [rowspan]="sportsList[1].rows">
+                    <img [src]="" [name]="sportsList[1].id" routerLink="/article/{{sportsList[1].id}}">
+                    <mat-grid-tile-footer>
+                        <h3><a routerLink="/article/{{sportsList[1].id}}">{{sportsList[1].text}}</a></h3>
+                    </mat-grid-tile-footer>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="sportsList[2].cols" [rowspan]="sportsList[2].rows">
+                    <img [src]="" [name]="sportsList[2].id" routerLink="/article/{{sportsList[2].id}}">
+                    <mat-grid-tile-footer>
+                        <h3><a routerLink="/article/{{sportsList[2].id}}">{{sportsList[2].text}}</a></h3>
+                    </mat-grid-tile-footer>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="sportsList[3].cols" [rowspan]="sportsList[3].rows">
+                    <img [src]="" [name]="sportsList[3].id" routerLink="/article/{{sportsList[3].id}}">
+                    <mat-grid-tile-footer>
+                        <h3><a routerLink="/article/{{sportsList[3].id}}">{{sportsList[3].text}}</a></h3>
                     </mat-grid-tile-footer>
                 </mat-grid-tile>
             </mat-grid-list>
         </div>
-    </div>
-<!--Top news finished-->
-<!--Sport Section -->
-<div class="row">
-    <div class="col">
-     SPORTS
-    </div>
- </div>
+    </div> -->
 
- <div class="row">
-     <div class="col">
-         <mat-grid-list cols="4" rowHeight="100px" class="shadow p-3 mb-5 bg-white rounded">
-             <mat-grid-tile *ngFor="let tile of sportTiles;let i=index" [colspan]="tile.cols" [rowspan]="tile.rows"
-                 [style.background]="tile.color">
-     
-                 <mat-grid-tile-footer>
-                     <h3>This is the footer {{i}}</h3>
-                 </mat-grid-tile-footer>
-             </mat-grid-tile>
-         </mat-grid-list>
-     </div>
- </div>
- <!--Sport Section Finished-->
+
+    <!--world section-->
+    <!-- <div class="row">
+        <div class="col">
+            {{worldsList[0].section}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-grid-list cols="4" rowHeight="100px">
+                <mat-grid-tile *ngFor="let tile of worldsList" [colspan]="tile.cols" [rowspan]="tile.rows">
+                    <img [src]="tile.imgSrc" routerLink="/article/{{tile.id}}">
+                    <mat-grid-tile-footer>
+                        <h3><a routerLink="/article/{{tile.id}}">{{tile.text}} of id {{tile.id}}</a></h3>
+                    </mat-grid-tile-footer>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+    </div> -->
+
+    <!--Entertainment Section-->
+    <!-- <div class="row">
+        <div class="col">
+            {{entertainmentList[0].section}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-grid-list cols="4" rowHeight="100px">
+                <mat-grid-tile *ngFor="let tile of entertainmentList" [colspan]="tile.cols" [rowspan]="tile.rows">
+                    <img [src]="tile.imgSrc" routerLink="/article/{{tile.id}}">
+                    <mat-grid-tile-footer>
+                        <h3><a routerLink="/article/{{tile.id}}">{{tile.text}} of id {{tile.id}}</a></h3>
+                    </mat-grid-tile-footer>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+    </div> -->
+    <div *ngIf="sportImageMap.size!=0">
+        <div class="row">
+            <div class="col-md-6">
+                <p class="mt-1 mb-1">Sports</p>
+            </div>
+            <div class="col-md-6">
+                <p class="mt-1 mb-1 float-right"><a href="#">See All</a></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3" *ngFor="let i of sportImageMap | keyvalue">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>Title</mat-card-title>
+                        <mat-card-subtitle>{{sportImageMap.get(i.key)[0].date}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <img [attr.src]="sportImageMap.get(i.key)[0].url" routerLink="/article/{{i.key}}"
+                        class="image-size">
+                    <mat-card-content>
+                        <p>{{sportImageMap.get(i.key)[0].description}}</p>
+                    </mat-card-content>
+                    <mat-card-actions></mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+    <!--world section-->
+    <div *ngIf="worldImageMap.size!=0">
+        <div class="row">
+            <div claass="col">
+                <p class="mt-1 mb-1">World</p>
+            </div>
+            <div class="col-md-6">
+                <p class="mt-1 mb-1 float-right"><a href="#">See All</a></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3" *ngFor="let i of worldImageMap | keyvalue">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>Title</mat-card-title>
+                        <mat-card-subtitle>{{worldImageMap.get(i.key)[0].date}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <img [attr.src]="worldImageMap.get(i.key)[0].url" routerLink="/article/{{i.key}}"
+                        class="image-size">
+                    <mat-card-content>
+                        <p>{{worldImageMap.get(i.key)[0].description}}</p>
+                    </mat-card-content>
+                    <mat-card-actions></mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+    <!--world section ends-->
+    <!--entertainment section-->
+    <div *ngIf="entertainmentImageMap.size!=0">
+        <div class="row">
+            <div claass="col">
+                <p class="mt-1 mb-1">Entertainment</p>
+            </div>
+            <div class="col-md-6">
+                <p class="mt-1 mb-1 float-right"><a href="#">See All</a></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3" *ngFor="let i of entertainmentImageMap | keyvalue">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>Title</mat-card-title>
+                        <mat-card-subtitle>{{entertainmentImageMap.get(i.key)[0].date}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <img [attr.src]="entertainmentImageMap.get(i.key)[0].url" routerLink="/article/{{i.key}}"
+                        class="image-size">
+                    <mat-card-content>
+                        <p>{{entertainmentImageMap.get(i.key)[0].description}}</p>
+                    </mat-card-content>
+                    <mat-card-actions></mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+    <!--entertainment section ends-->
+
+    <!-- <div *ngIf="imageMap.size!=undefined" >
+    <img [attr.src]="imageMap.get('1')" >
+</div> -->
+
 </div>

@@ -2,8 +2,12 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { UploadHindiSamacharPDFService } from '../upload-hindi-samachar-pdf.service'
+import { UploadHindiSamacharPDFService } from '../service/upload-hindi-samachar-pdf.service'
 import { Router } from '@angular/router';
+import { MatSort } from '@angular/material/sort';
+import { ToastrService } from 'ngx-toastr';
+import { MatDialog } from '@angular/material/dialog'
+import { ModelPopupComponent } from '../popup/model-popup/model-popup.component';
 @Component({
   selector: 'app-hindi-samachar-pdf',
   templateUrl: './hindi-samachar-pdf.component.html',
@@ -13,9 +17,12 @@ export class HindiSamacharPDFComponent implements OnInit, AfterViewInit {
 
   constructor(private fb: FormBuilder,
     private uploadHindiSamacharPDF: UploadHindiSamacharPDFService,
-    private router: Router) { }
+    private router: Router,
+    private toastr: ToastrService,
+    private dialog: MatDialog) { }
   @ViewChild(MatPaginator) paginator: MatPaginator
-  columnName: string[] = ['number', 'date', 'pdf'];
+  @ViewChild(MatSort) sort: MatSort;
+  columnName: string[] = ['number', 'date', 'pdf', 'delete'];
   dataSource = new MatTableDataSource<HindiPDF>(ELEMENT_DATA);
 
   //file operations
@@ -29,9 +36,10 @@ export class HindiSamacharPDFComponent implements OnInit, AfterViewInit {
       fileName: [],
 
     })
+    this.getHidiSamacharPdfFileDetailsForTable();
   }
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator
+    // setTimeout(() => this.dataSource.paginator = this.paginator);
   }
 
 
@@ -54,6 +62,17 @@ export class HindiSamacharPDFComponent implements OnInit, AfterViewInit {
       hindisamacharPDFFormData.append('hindiSamacharPdfFile', fileToSendToServer)
       this.uploadHindiSamacharPDF.uplaodHindiSamacharPDF(hindisamacharPDFFormData).subscribe(data => {
         console.log(data);
+        this.uploadPdfFile.controls['fileName'].setValue('');
+        if (data != null) {
+          this.toastr.success("File uploaded successfully")
+          this.dataSource.data.length = 0;
+          this.getHidiSamacharPdfFileDetailsForTable();
+          
+
+        }
+        else {
+          this.toastr.error("Couldn't upload file for some reason")
+        }
       })
     }
   }
@@ -62,8 +81,58 @@ export class HindiSamacharPDFComponent implements OnInit, AfterViewInit {
   openfile(data: any) {
     console.log(data)
     sessionStorage.setItem(data, data);
-    this.router.navigate(['/pdf/'+data])
+    this.dataSource.data.length = 0;
+    this.router.navigate(['/pdf/' + data])
 
+  }
+  getHidiSamacharPdfFileDetailsForTable() {
+    this.uploadHindiSamacharPDF.getHidiSamacharPdfFileDetailsForTableService().
+      subscribe(data => {
+        console.log(data[0]['id'])
+        for (let index = 0; index < data.length; index++) {
+          ELEMENT_DATA.push({
+            date: data[index]['date'],
+            number: data[index]['id'],
+            pdf: data[index]['filename']
+          })
+          console.log(data[index]['filename'])
+
+
+        }
+        this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+        setTimeout(() => {this.dataSource.paginator = this.paginator;
+        this.dataSource.sort=this.sort});
+
+      })
+  }
+
+  deleteDailogReturnValue: any;
+  deleteFile(fileid,filename) {
+    const dialogRef = this.dialog.open(ModelPopupComponent, {
+      data: {
+        filename: filename
+      }
+    });
+    dialogRef.afterClosed().subscribe(data => {
+      console.log('dialog after close says ' + data);
+      this.deleteDailogReturnValue = data;
+      //as it is asyc or rather promis so rest of the code
+      //to send file to server should be here only
+      /* function block for deleting file  */
+      if (this.deleteDailogReturnValue == 'yes') {
+        this.uploadHindiSamacharPDF.deleteHindiSamacharFileDetails(fileid).subscribe(data => {
+          if (data) {
+            this.toastr.success("File deleted successfully")
+            this.dataSource.data.length = 0;
+            this.getHidiSamacharPdfFileDetailsForTable();
+          }
+          else {
+            this.toastr.info(data)
+          }
+        })
+      }
+    })
+   
   }
 
 }
@@ -74,12 +143,7 @@ export interface HindiPDF {
 
 }
 const ELEMENT_DATA: HindiPDF[] = [
-  { number: 1, date: '22/11/2020', pdf: 'demofile.pdf' },
-  { number: 2, date: '22/11/2020', pdf: '22.11.2020.pdf' },
-  { number: 3, date: '22/11/2020', pdf: '22.11.2020.pdf' },
-  { number: 4, date: '22/11/2020', pdf: '22.11.2020.pdf' },
-  { number: 5, date: '22/11/2020', pdf: '22.11.2020.pdf' },
-  { number: 6, date: '22/11/2020', pdf: '22.11.2020.pdf' },
-  { number: 7, date: '22/11/2020', pdf: '22.11.2020.pdf' },
+
+
 
 ]

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { HomeTileImageService } from '../service/home-tile-image.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { AngularFirestore } from '@angular/fire/firestore'
+import { AngularFireStorage } from '@angular/fire/storage'
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,23 +10,88 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private imageTileService: HomeTileImageService,
+    private sanitizer: DomSanitizer,
+    private fireStore: AngularFirestore,
+    private fireStorage: AngularFireStorage) { }
+
+  imageList: Tile[] = [];
+  sportImageMap = new Map();
+  sportKeys: any;
+  worldImageMap = new Map();
+  worldKeys: any;
+  entertainmentImageMap = new Map();
+  entertainmentKeys: any;
+
+
+  url: any;
 
   ngOnInit(): void {
-  }
-  tiles: Tile[] = [{ text: 'tile one', cols: 3, rows: 4, color: 'lightblue' },
-  { text: 'tile 2', cols: 1, rows: 2, color: 'lightblue' },
-  { text: 'tile 3', cols: 1, rows: 1, color: 'lightblue' },
-  { text: 'tile 4', cols: 1, rows: 1, color: 'lightblue' }]
 
-  sportTiles: Tile[] = [{ text: 'tile 1', cols: 1, rows: 2, color: 'lightblue' },
-  { text: 'tile 2', cols: 2, rows: 4, color: 'lightblue' },
-  { text: 'tile 3', cols: 1, rows: 4, color: 'lightblue' },
-  { text: 'tile 4', cols: 1, rows: 2, color: 'lightblue' }]
+    this.imageTileService.getAllImages().subscribe(data => {
+      for (let i = 0; i < data.length; i++) {
+        this.getImageBlobDataById(data[i].id, data[i].section, data[i].newsDescription);
+
+      }
+      this.sportKeys = Array.from(this.sportImageMap.keys());
+      console.log(this.sportKeys);
+      this.worldKeys = Array.from(this.worldImageMap.keys());
+      this.entertainmentKeys = Array.from(this.entertainmentImageMap.keys());
+    });
+  }
+
+  url1: any;
+  getImageBlobDataById(imgid: any, section: any, des: any): string {
+    let imgFile: any
+    let imgURL: any;
+    let imageElelemmt: any;
+    let date = new Date();
+    this.imageTileService.getIamgeById(imgid).subscribe(data => {
+      imgURL = URL.createObjectURL(data);
+      imgFile = this.sanitizer.bypassSecurityTrustUrl(imgURL);
+      this.url1 = imgFile;
+
+      if (section == 'Sports') {
+        this.sportImageMap.set(imgid, [{ 'url': this.url1, 'description': des, 'date': date.getDay() + '/' + date.getDate() + '/' + date.getFullYear(), 'section': section }])
+
+      }
+      else if (section == 'World') {
+        this.worldImageMap.set(imgid, [{ 'url': this.url1, 'description': des, 'date': date.getDay() + '/' + date.getDate() + '/' + date.getFullYear(), 'section': section }]);
+
+
+
+      }
+      else if (section == 'Entertainment')
+        this.entertainmentImageMap.set(imgid, [{ 'url': this.url1, 'description': des, 'date': date.getDay() + '/' + date.getDate() + '/' + date.getFullYear(), 'section': section }])
+
+    })
+    return imgFile;
+  }
+
+  getImageFromFirebaseStorage(filename: any): string {
+    let url: any
+    url = this.fireStorage.ref('homepageimaages/' + filename).getDownloadURL().subscribe(data => {
+
+      return data;
+    })
+    return url;
+  }
+
+
 }
 export interface Tile {
+  id: String;
   color: string;
   cols: number;
   rows: number;
   text: string;
+  imgSrc: any;
+  section: string;
+  filename: any;
+}
+export interface card {
+  title: any;
+  subtitle_date: any;
+  imageUrl: any;
+  content: any;
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
-import {FeedbackServiceService} from '../feedbackService/feedback-service.service'
+import {FeedbackServiceService} from '../service/feedback-service.service'
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-feedback',
   templateUrl: './feedback.component.html',
@@ -10,7 +11,8 @@ import {FeedbackServiceService} from '../feedbackService/feedback-service.servic
 export class FeedbackComponent implements OnInit {
 
   constructor(private fb:FormBuilder,
-    private feedbackservice: FeedbackServiceService) { }
+    private feedbackservice: FeedbackServiceService,
+    private toastr :ToastrService) { }
   
   countries:string[]=['India','Bangladesh','Pakistan','Shri-lanka']
 
@@ -33,6 +35,9 @@ export class FeedbackComponent implements OnInit {
 
   submitFeedback(){
     console.log(this.feedback.value);
+    this.toastr.info('everything is broken', 'Major Error', {
+      timeOut: 3000,
+    });
     if(this.feedback.valid){
      this.feedbackData={
        name:this.feedback.controls['name'].value,
@@ -42,10 +47,18 @@ export class FeedbackComponent implements OnInit {
      }
       this.feedbackservice.sendFeedback(this.feedbackData).subscribe(data=>{
         console.log('Response: '+data);
+        if(data!=null){
+          this.toastr.success('Feedback sent successfully')
+        }
+        else{
+          console.log('please enter valid data!!')
+          this.toastr.error('Please enter valid information')
+        }
       })
     }
     else{
       console.log('please enter valid data!!')
+      this.toastr.info('Please enter valid information')
     }
      
   }
