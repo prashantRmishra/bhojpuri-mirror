@@ -32,7 +32,8 @@ import { ArticleComponent } from './article/article.component';
 import { MatCardModule } from '@angular/material/card'
 import { AngularFireModule } from '@angular/fire'
 import { AngularFirestoreModule } from '@angular/fire/firestore'
-import { AngularFireStorageModule } from '@angular/fire/storage'
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { SectionTabComponent } from './section-tab/section-tab.component'
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage'
     PdfViewerComponent,
     ModelPopupComponent,
     ArticleComponent,
+    SectionTabComponent,
   ],
   imports: [
     BrowserModule,

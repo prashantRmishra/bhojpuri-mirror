@@ -17,11 +17,11 @@ export class HomeComponent implements OnInit {
 
   imageList: Tile[] = [];
   sportImageMap = new Map();
-  sportKeys: any;
+ 
   worldImageMap = new Map();
-  worldKeys: any;
+
   entertainmentImageMap = new Map();
-  entertainmentKeys: any;
+
 
 
   url: any;
@@ -30,13 +30,9 @@ export class HomeComponent implements OnInit {
 
     this.imageTileService.getAllImages().subscribe(data => {
       for (let i = 0; i < data.length; i++) {
-        this.getImageBlobDataById(data[i].id, data[i].section, data[i].newsDescription);
+        this.getImageBlobDataById(data[i].id, data[i].section, data[i].shortDescription);
 
       }
-      this.sportKeys = Array.from(this.sportImageMap.keys());
-      console.log(this.sportKeys);
-      this.worldKeys = Array.from(this.worldImageMap.keys());
-      this.entertainmentKeys = Array.from(this.entertainmentImageMap.keys());
     });
   }
 

@@ -4,13 +4,13 @@
 
 /* universal font style */
 *{
-    font-family: monospace ;
+    font-family: serif ;
     font-size: large !important;
 }
 /* width of all the tables */
 table{
     width: 100%;
-    font-family: monospace !important;
+    font-family: serif !important;
     font-size: large !important
 }
 /* width of all the input fields  */
@@ -32,4 +32,9 @@ table{
 }
 mat-card-subtitle{
     font-size: x-small !important;
+}
+/* Article title */
+.article-title{
+    font-size: xxx-large !important;
+    font-weight: bold;
 }

@@ -38,5 +38,10 @@
     "/getallimageblobs/*": {
         "target": "http://localhost:8080",
         "secure": false
+    },
+    "/sectionimage/*":{
+        "target": "http://localhost:8080",
+        "secure": false
     }
+
 }

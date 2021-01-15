@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="row mt-1" *ngIf="sectionMap.size!=0">
+        <div class="col-sm-3" *ngFor="let i of sectionMap | keyvalue ">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>{{sectionMap.get(i.key)[0].title}}</mat-card-title>
+                    <mat-card-subtitle>{{sectionMap.get(i.key)[0].date}}</mat-card-subtitle>
+                </mat-card-header>
+                <img [src]= "sectionMap.get(i.key)[0].url" class="image-size" routerLink="/article/{{i.key}}">
+                <mat-card-content>{{sectionMap.get(i.key)[0].shortDes}}</mat-card-content>
+            </mat-card> 
+        </div>
+    </div>
+</div>

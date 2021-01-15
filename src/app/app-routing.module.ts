@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { HindiSamacharPDFComponent } from './hindi-samachar-pdf/hindi-samachar-pdf.component';
 import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
 import { ArticleComponent } from './article/article.component';
+import { SectionTabComponent } from './section-tab/section-tab.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path:'hindisamacharpdf',component:HindiSamacharPDFComponent},
   {path:'pdf/:fileid',component:PdfViewerComponent},
   {path:'article/:fileid',component:ArticleComponent},
+  {path:'section/:sectionname',component:SectionTabComponent},
  
 ];
 

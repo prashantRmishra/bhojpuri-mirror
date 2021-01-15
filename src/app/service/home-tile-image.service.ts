@@ -27,14 +27,14 @@ export class HomeTileImageService {
     return this.http.get('/getimagedescription/'+imgid,{observe:'body'})
   }
 
-  getAllImageBlobData():Observable<any>{
-    return this.http.get('/getallimageblobs/',{observe:'response',responseType:'blob'}).pipe(map(res=>{
-      console.log('headers')
-      console.log(res.headers)
-      console.log('body')
-      console.log(res.body)
-    }))
-  }
+  // getAllImageBlobData():Observable<any>{
+  //   return this.http.get('/getallimageblobs/',{observe:'response',responseType:'blob'}).pipe(map(res=>{
+  //     console.log('headers')
+  //     console.log(res.headers)
+  //     console.log('body')
+  //     console.log(res.body)
+  //   }))
+  // }
 
 }
 

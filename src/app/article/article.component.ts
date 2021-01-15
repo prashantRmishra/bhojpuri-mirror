@@ -18,8 +18,8 @@ export class ArticleComponent implements OnInit {
   imageFile: any;
   imageFileId: any;;
   imageDescription: any
-  imageBlob: any;
   fileURL: any;
+  title:any;
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -29,6 +29,7 @@ export class ArticleComponent implements OnInit {
         this.imageFile = this.sanitizer.bypassSecurityTrustUrl(this.fileURL)
         this.imageservice.getImageDescription(this.imageFileId).subscribe(data => {
           this.imageDescription = data.newsDescription;
+          this.title = data.title
         })
       })
     })
