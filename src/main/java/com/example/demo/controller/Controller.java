@@ -1,8 +1,6 @@
 package com.example.demo.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 import com.example.demo.model.FeedbackModel;
 import com.example.demo.model.HindiSamacharPdfFileModel;
@@ -14,7 +12,6 @@ import com.example.demo.service.ImageDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.function.ServerRequest.Headers;
 
 @RestController
 public class Controller {
@@ -89,15 +85,8 @@ public class Controller {
         return this.imageDetailsServie.ImageDetails(file);
     }
 
-    @GetMapping("/get4imagefiles")
-    public List<HomeTilePageModel> get4ImageDetails() {
-        this.imageDetailsServie.get4ImageDetails();
-        return null;
-    }
-
     @GetMapping("/getallimagefiles")
     public List<HomeTilePageModel> getAllImageDetails() {
-        this.imageDetailsServie.getAllImageDetails();
         return this.imageDetailsServie.getAllImageDetails();
     }
 
@@ -106,10 +95,10 @@ public class Controller {
         HomeTilePageModel model = new HomeTilePageModel();
         model = this.imageDetailsServie.getImageById(imgid);
         return ResponseEntity.ok().contentType(MediaType.parseMediaType(model.getFiletype()))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; description=" + model.getNewsDescription()+" .")
                 .body(new ByteArrayResource(model.getData()));
 
     }
+
     @GetMapping("/getimagedescription/{imgid}")
     public ResponseEntity<HomeTilePageModel> getImageDescriptionById(@PathVariable String imgid) {
         HomeTilePageModel model = new HomeTilePageModel();
@@ -117,21 +106,15 @@ public class Controller {
         return ResponseEntity.ok().body(model);
 
     }
-    @GetMapping("/getallimageblobs")
-    public ResponseEntity< List<byte[]>> getAllImageBlobs() {
-       List<HomeTilePageModel> list = this.imageDetailsServie.getAllImageDetails();
-       List<byte[]> imagebyte = new ArrayList<>();
-        HttpHeaders header = new HttpHeaders();
-       for(int index  = 0;index<list.size();index++){
-           imagebyte.add(list.get(index).getData());
-           header.add(list.get(index).getId(), list.get(index).getNewsDescription());
-       }
-      
-       /* List<ByteArrayResource> blobData = new ArrayList<>(); */
-      /*  for(int index=0;index<list.size();index++){
-         
-           blobData.add(new ByteArrayResource(list.get(index).getData()));
-       } */
-        return ResponseEntity.ok(imagebyte);
+
+    /* section tab APIs */
+
+    /* this method fetches all the images for the given section
+    @param section
+    @return List of HomeTilePageModel */
+    @GetMapping("/sectionimage/{section}")
+    public List<HomeTilePageModel> getAllsectionImages(@PathVariable String section){
+        return this.imageDetailsServie.getAllImagesForSection(section);
     }
+
 }

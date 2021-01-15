@@ -1,8 +1,10 @@
 package com.example.demo.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.example.demo.dao.rowmapper.ImageMapper;
+import com.example.demo.dao.rowmapper.SectionImageMapper;
 import com.example.demo.model.HomeTilePageModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,8 @@ public class HomeTilePageDaoImpl implements HomeTilePageDao {
         int result = 0;
         try {
             result += this.jdbcTemplate.update("insert into imageDetails(filename,filetype,filedata,newsdescription,section) values(?,?,?,?,?)",
-                    new Object[] { data.getFilename(), data.getFiletype(), data.getData() ,data.getNewsDescription(),data.getSection()});
+                    new Object[] { data.getFilename(), data.getFiletype(), data.getData() ,data.getNewsDescription(),data.getSection(),
+                    new Date(),data.getTitle(),data.getShortDescription()});
         } catch (Exception e) {
             result = 0;
         }
@@ -51,6 +54,13 @@ public class HomeTilePageDaoImpl implements HomeTilePageDao {
             list = null;
         }
         return list.isEmpty() ? null : list.get(0);
+    }
+
+    @Override
+    public List<HomeTilePageModel> getAllImagesForSection(String section) {
+        List<HomeTilePageModel> list = null;
+        list = jdbcTemplate.query("select * from imageDetails where section = ?;",new Object[]{section}, new SectionImageMapper());
+        return list.isEmpty() ? null : list;
     }
 
 }

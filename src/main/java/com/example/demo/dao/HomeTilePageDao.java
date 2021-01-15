@@ -13,4 +13,6 @@ public interface HomeTilePageDao {
 
     public HomeTilePageModel getImageById(String imgid);
 
+    public List<HomeTilePageModel> getAllImagesForSection(String section);
+
 }

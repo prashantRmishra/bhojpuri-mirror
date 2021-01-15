@@ -14,4 +14,5 @@ public interface ImageDetailsService {
     public List<HomeTilePageModel> get4ImageDetails();
 
     public HomeTilePageModel getImageById(String imgid);
+    public List<HomeTilePageModel> getAllImagesForSection(String section);
 }

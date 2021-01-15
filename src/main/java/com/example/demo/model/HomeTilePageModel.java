@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import java.util.Date;
+
 public class HomeTilePageModel {
     private String id;
     private String filename;
@@ -7,6 +9,33 @@ public class HomeTilePageModel {
     private byte[] data;
     private String newsDescription;
     private String section;
+    private String title;
+    private Date date;
+    private String shortDescription;
+
+    public String getShortDescription() {
+        return this.shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Date getDate() {
+        return this.date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public String getSection() {
         return this.section;

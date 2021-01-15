@@ -55,4 +55,10 @@ public class ImageDetailsServiceImpl implements ImageDetailsService {
         return this.homeTilepageDao.getImageById(imgid);
     }
 
+    @Override
+    public List<HomeTilePageModel> getAllImagesForSection(String section) {
+       
+        return this.homeTilepageDao.getAllImagesForSection(section);
+    }
+
 }
