@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
 @Injectable({
@@ -9,8 +9,14 @@ export class HomeTileImageService {
 
   constructor(private http: HttpClient) { }
 
-  saveImageService(data): Observable<any> {
-    return this.http.post('saveimage', data)
+  saveImageService(file,title,section,short,ndesc): Observable<any> {
+    return this.http.post('/saveimage',file,{headers:new HttpHeaders({'title':title,
+  'shortDescription':short,'section':section,
+'newsDescription':ndesc})})
+  }
+
+  deleteImageFIle(imgId:any) : Observable<any>{
+    return this.http.delete('/deleteimage/'+imgId,{headers:this.getHeader()});
   }
   getAllImages(): Observable<any> {
     return this.http.get('/getallimagefiles')
@@ -27,14 +33,9 @@ export class HomeTileImageService {
     return this.http.get('/getimagedescription/'+imgid,{observe:'body'})
   }
 
-  // getAllImageBlobData():Observable<any>{
-  //   return this.http.get('/getallimageblobs/',{observe:'response',responseType:'blob'}).pipe(map(res=>{
-  //     console.log('headers')
-  //     console.log(res.headers)
-  //     console.log('body')
-  //     console.log(res.body)
-  //   }))
-  // }
+  private getHeader(){
+    return new HttpHeaders({'Authorization':'Bearer '+localStorage.getItem('token')});
+  }
 
 }
 

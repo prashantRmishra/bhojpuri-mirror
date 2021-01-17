@@ -56,6 +56,7 @@ import { SectionTabComponent } from './section-tab/section-tab.component'
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     MatCommonModule,
     MatSelectModule,
     BrowserAnimationsModule,

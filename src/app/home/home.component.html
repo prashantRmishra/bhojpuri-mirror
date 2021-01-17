@@ -97,7 +97,7 @@
         </div>
     </div> -->
     <div *ngIf="sportImageMap.size!=0">
-        <div class="row">
+        <div class="row border-bottom">
             <div class="col-md-6">
                 <p class="mt-1 mb-1">Sports</p>
             </div>
@@ -105,7 +105,7 @@
                 <p class="mt-1 mb-1 float-right"><a href="/section/Sports">See All</a></p>
             </div>
         </div>
-        <div class="row">
+        <div class="row border-bottom mt-2">
             <div class="col-md-3" *ngFor="let i of sportImageMap | keyvalue">
                 <mat-card>
                     <mat-card-header>
@@ -124,15 +124,15 @@
     </div>
     <!--world section-->
     <div *ngIf="worldImageMap.size!=0">
-        <div class="row">
-            <div claass="col">
+        <div class="row border-bottom">
+            <div class="col-sm-6">
                 <p class="mt-1 mb-1">World</p>
             </div>
             <div class="col-md-6">
                 <p class="mt-1 mb-1 float-right"><a href="section/World">See All</a></p>
             </div>
         </div>
-        <div class="row">
+        <div class="row border-bottom mt-2">
             <div class="col-md-3" *ngFor="let i of worldImageMap | keyvalue">
                 <mat-card>
                     <mat-card-header>
@@ -152,15 +152,15 @@
     <!--world section ends-->
     <!--entertainment section-->
     <div *ngIf="entertainmentImageMap.size!=0">
-        <div class="row">
-            <div claass="col">
+        <div class="row border-bottom">
+            <div class="col-md-6">
                 <p class="mt-1 mb-1">Entertainment</p>
             </div>
             <div class="col-md-6">
                 <p class="mt-1 mb-1 float-right"><a href="section/Entertainment">See All</a></p>
             </div>
         </div>
-        <div class="row">
+        <div class="row border-bottom mt-2">
             <div class="col-md-3" *ngFor="let i of entertainmentImageMap | keyvalue">
                 <mat-card>
                     <mat-card-header>
