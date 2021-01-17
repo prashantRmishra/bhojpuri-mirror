@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.io.File;
 import java.util.Date;
 
 public class HomeTilePageModel {
@@ -12,6 +13,15 @@ public class HomeTilePageModel {
     private String title;
     private Date date;
     private String shortDescription;
+    private File file;
+
+    public File getFile() {
+        return this.file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
 
     public String getShortDescription() {
         return this.shortDescription;

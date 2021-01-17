@@ -5,10 +5,9 @@ import java.util.List;
 import com.example.demo.dao.HomeTilePageDao;
 import com.example.demo.model.HomeTilePageModel;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class ImageDetailsServiceImpl implements ImageDetailsService {
@@ -17,24 +16,9 @@ public class ImageDetailsServiceImpl implements ImageDetailsService {
     HomeTilePageDao homeTilepageDao;
 
     @Override
-    public boolean ImageDetails(MultipartFile file) {
-        String filename;
-        HomeTilePageModel model = new HomeTilePageModel();
-        try {
+    public boolean ImageDetails(HomeTilePageModel data) {
 
-            filename = StringUtils.cleanPath(file.getOriginalFilename());
-            if (filename.contains("..")) {
-                throw new Exception();
-            }
-            model.setFilename(filename);
-            model.setFiletype(file.getContentType());
-            model.setData(file.getBytes());
-        } catch (Exception e) {
-            e.printStackTrace();
-            model = null;
-        }
-
-        return homeTilepageDao.saveImageDetails(model);
+        return homeTilepageDao.saveImageDetails(data);
     }
 
     @Override
@@ -51,14 +35,20 @@ public class ImageDetailsServiceImpl implements ImageDetailsService {
 
     @Override
     public HomeTilePageModel getImageById(String imgid) {
-        
+
         return this.homeTilepageDao.getImageById(imgid);
     }
 
     @Override
     public List<HomeTilePageModel> getAllImagesForSection(String section) {
-       
+
         return this.homeTilepageDao.getAllImagesForSection(section);
+    }
+
+    @Override
+    public boolean deleteImage(String id) {
+
+        return this.homeTilepageDao.deleteImage(id);
     }
 
 }

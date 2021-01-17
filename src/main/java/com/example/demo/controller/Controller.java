@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.example.demo.model.FeedbackModel;
 import com.example.demo.model.HindiSamacharPdfFileModel;
 import com.example.demo.model.HomeTilePageModel;
@@ -14,16 +16,20 @@ import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*", exposedHeaders = { "Authorization", "newsinfo" })
 public class Controller {
 
     @Autowired
@@ -80,9 +86,22 @@ public class Controller {
     }
 
     @PostMapping("/saveimage")
-    public boolean saveFile(@RequestParam("image") MultipartFile file) {
+    public boolean saveFile(@RequestParam("image") MultipartFile file, HttpServletRequest req) {
+        HomeTilePageModel data = new HomeTilePageModel();
+        try {
 
-        return this.imageDetailsServie.ImageDetails(file);
+            data.setNewsDescription(req.getHeader("newsDescription"));
+            data.setShortDescription(req.getHeader("shortDescription"));
+            data.setSection(req.getHeader("section"));
+            data.setTitle(req.getHeader("title"));
+            data.setFilename(StringUtils.cleanPath(file.getOriginalFilename()));
+            data.setFiletype(file.getContentType());
+            data.setData(file.getBytes());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return this.imageDetailsServie.ImageDetails(data);
     }
 
     @GetMapping("/getallimagefiles")
@@ -109,12 +128,21 @@ public class Controller {
 
     /* section tab APIs */
 
-    /* this method fetches all the images for the given section
-    @param section
-    @return List of HomeTilePageModel */
+    /*
+     * this method fetches all the images for the given section
+     * 
+     * @param section
+     * 
+     * @return List of HomeTilePageModel
+     */
     @GetMapping("/sectionimage/{section}")
-    public List<HomeTilePageModel> getAllsectionImages(@PathVariable String section){
+    public List<HomeTilePageModel> getAllsectionImages(@PathVariable String section) {
         return this.imageDetailsServie.getAllImagesForSection(section);
+    }
+
+    @DeleteMapping("/deleteimage/{imgid}")
+    public boolean deleteImageFIle(@PathVariable String imgid) {
+        return this.imageDetailsServie.deleteImage(imgid);
     }
 
 }

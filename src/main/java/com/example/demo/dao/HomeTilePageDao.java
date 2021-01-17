@@ -15,4 +15,6 @@ public interface HomeTilePageDao {
 
     public List<HomeTilePageModel> getAllImagesForSection(String section);
 
+    public boolean deleteImage(String imgid);
+
 }

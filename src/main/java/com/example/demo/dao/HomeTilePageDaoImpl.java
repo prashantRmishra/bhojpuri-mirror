@@ -10,8 +10,10 @@ import com.example.demo.model.HomeTilePageModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
+@Transactional
 public class HomeTilePageDaoImpl implements HomeTilePageDao {
 
     @Autowired
@@ -21,7 +23,7 @@ public class HomeTilePageDaoImpl implements HomeTilePageDao {
     public boolean saveImageDetails(HomeTilePageModel data) {
         int result = 0;
         try {
-            result += this.jdbcTemplate.update("insert into imageDetails(filename,filetype,filedata,newsdescription,section) values(?,?,?,?,?)",
+            result += this.jdbcTemplate.update("insert into imageDetails(filename,filetype,filedata,newsdescription,section,date,title,short_description) values(?,?,?,?,?,?,?,?)",
                     new Object[] { data.getFilename(), data.getFiletype(), data.getData() ,data.getNewsDescription(),data.getSection(),
                     new Date(),data.getTitle(),data.getShortDescription()});
         } catch (Exception e) {
@@ -61,6 +63,18 @@ public class HomeTilePageDaoImpl implements HomeTilePageDao {
         List<HomeTilePageModel> list = null;
         list = jdbcTemplate.query("select * from imageDetails where section = ?;",new Object[]{section}, new SectionImageMapper());
         return list.isEmpty() ? null : list;
+    }
+
+    @Override
+    public boolean deleteImage(String imgid) {
+        int result=0;
+        try {
+            result = jdbcTemplate.update("delete from imageDetails where id = ?", new Object[]{Integer.parseInt(imgid)});
+        } catch (Exception e) {
+            e.printStackTrace();
+            result=0;
+        }
+        return result > 0 ? true:false;
     }
 
 }
