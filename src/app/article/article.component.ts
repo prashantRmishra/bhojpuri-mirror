@@ -69,21 +69,17 @@ export class ArticleComponent implements OnInit {
     return this.news.valid;
   }
   //uploading file to servre 
-  newsInfo =new Map();
+
   uploadNewsToServer(){
-    console.log('title '+this.news.controls['title'].value+' decription '+this.news.controls['description'].value);
-   this.newsInfo.set(' title',this.news.controls['title'].value)
-   this.newsInfo.set(' newsDescription',this.news.controls['description'].value)
-   this.newsInfo.set('shortDescription',this.news.controls['shortDescription'].value)
-   this.newsInfo.set('section',this.news.controls['section'].value)
+  
     let file = new  FormData();
    
     file.append('image',this.news.controls['imgFile'].value.files[0]);
-    this.imageservice.saveImageService(file,this.news.controls['title'].value,
-    this.news.controls['section'].value,
-    this.news.controls['shortDescription'].value,
-    this.news.controls['description'].value
-    ).subscribe(data=>{
+    file.append('title',this.news.controls['title'].value)
+    file.append('section',this.news.controls['section'].value)
+    file.append('shortDescription',this.news.controls['shortDescription'].value)
+    file.append('description',this.news.controls['description'].value)
+    this.imageservice.saveImageService(file).subscribe(data=>{
       if(data!=null) {this.toastr.success("News uploaded sucessfully !");
     this.router.navigate(['/section/'+this.section])}
       else this.toastr.error(data);

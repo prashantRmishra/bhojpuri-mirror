@@ -9,10 +9,8 @@ export class HomeTileImageService {
 
   constructor(private http: HttpClient) { }
 
-  saveImageService(file,title,section,short,ndesc): Observable<any> {
-    return this.http.post('/saveimage',file,{headers:new HttpHeaders({'title':title,
-  'shortDescription':short,'section':section,
-'newsDescription':ndesc})})
+  saveImageService(file): Observable<any> {
+    return this.http.post('/saveimage',file)
   }
 
   deleteImageFIle(imgId:any) : Observable<any>{

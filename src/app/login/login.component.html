@@ -1,0 +1,52 @@
+<div class="container">
+    <form [formGroup]="login">
+        <div class="row login" id="loginParaDiv">
+            <div class="col">
+                <p class="text-center">Log in to your account</p>
+            </div>
+
+        </div>
+        <div class="row" id="emailIdDiv">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input type="text" formControlName="emailid" matInput placeholder="Enter your email id">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <div class="row" id="passDiv">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input type="password" formControlName="password" matInput>
+                </mat-form-field>
+            </div>
+            <div class="sm-4"></div>
+        </div>
+        <div class="row" id="forgotPassDiv">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2">&nbsp;&nbsp;&nbsp;&nbsp;<a href="/forgot" class="forgot-pass">Forgot your password ?</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <button class="full-width" mat-raised-button 
+                color="primary" type="submit" (click)="logInUser()"
+                [disabled]="!isCredentialValid()">Log
+                    In</button>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <div class="row mt-5" id="dontHaveAcDiv">
+            <div class="col">
+                <p class="text-center">Don't have BhojpuriMirror Account ? <button mat-button color="primary">Create</button></p>
+            </div>
+        </div>
+    </form>
+</div>

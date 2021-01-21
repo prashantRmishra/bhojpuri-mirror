@@ -33,7 +33,10 @@ import { MatCardModule } from '@angular/material/card'
 import { AngularFireModule } from '@angular/fire'
 import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import { SectionTabComponent } from './section-tab/section-tab.component'
+import { SectionTabComponent } from './section-tab/section-tab.component';
+import { LoginComponent } from './login/login.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { CreateNewArticleComponent } from './article/create-new-article/create-new-article.component'
 
 @NgModule({
   declarations: [
@@ -47,6 +50,9 @@ import { SectionTabComponent } from './section-tab/section-tab.component'
     ModelPopupComponent,
     ArticleComponent,
     SectionTabComponent,
+    LoginComponent,
+    ForgotPasswordComponent,
+    CreateNewArticleComponent,
   ],
   imports: [
     BrowserModule,

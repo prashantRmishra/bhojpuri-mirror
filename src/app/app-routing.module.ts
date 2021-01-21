@@ -6,10 +6,13 @@ import { HindiSamacharPDFComponent } from './hindi-samachar-pdf/hindi-samachar-p
 import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
 import { ArticleComponent } from './article/article.component';
 import { SectionTabComponent } from './section-tab/section-tab.component';
+import { LoginComponent } from './login/login.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { CreateNewArticleComponent } from './article/create-new-article/create-new-article.component';
 
 
 const routes: Routes = [
-  {path:'*',component:HomeComponent},
+  {path:'',component:LoginComponent},
   {path:'home',component:HomeComponent},
   {path:'bhojpurimirror',component:HomeComponent},
   {path:'',component:HomeComponent},
@@ -18,6 +21,9 @@ const routes: Routes = [
   {path:'pdf/:fileid',component:PdfViewerComponent},
   {path:'article/:fileid',component:ArticleComponent},
   {path:'section/:sectionname',component:SectionTabComponent},
+  {path:'login',component:LoginComponent},
+  {path:'forgot',component:ForgotPasswordComponent},
+  {path:'newarticle',component:CreateNewArticleComponent},
  
 ];
 
