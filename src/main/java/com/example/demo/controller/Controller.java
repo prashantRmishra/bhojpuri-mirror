@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
 import com.example.demo.model.FeedbackModel;
 import com.example.demo.model.HindiSamacharPdfFileModel;
 import com.example.demo.model.HomeTilePageModel;
@@ -86,14 +83,15 @@ public class Controller {
     }
 
     @PostMapping("/saveimage")
-    public boolean saveFile(@RequestParam("image") MultipartFile file, HttpServletRequest req) {
+    public boolean saveFile(@RequestParam("image") MultipartFile file,@RequestParam("title") String title,@RequestParam("section") String section,
+    @RequestParam("shortDescription") String shortDescription,@RequestParam("description") String description) {
         HomeTilePageModel data = new HomeTilePageModel();
         try {
 
-            data.setNewsDescription(req.getHeader("newsDescription"));
-            data.setShortDescription(req.getHeader("shortDescription"));
-            data.setSection(req.getHeader("section"));
-            data.setTitle(req.getHeader("title"));
+            data.setNewsDescription(description);
+            data.setShortDescription(shortDescription);
+            data.setSection(section);
+            data.setTitle(title);
             data.setFilename(StringUtils.cleanPath(file.getOriginalFilename()));
             data.setFiletype(file.getContentType());
             data.setData(file.getBytes());

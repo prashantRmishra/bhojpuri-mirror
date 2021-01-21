@@ -1,0 +1,3 @@
+{
+    "BM_CHECK_EMAIL_EXIST":"select * from users where email=? and password=?;"
+}
