@@ -17,7 +17,7 @@ export class HomeTileImageService {
     return this.http.delete('/deleteimage/'+imgId,{headers:this.getHeader()});
   }
   getAllImages(): Observable<any> {
-    return this.http.get('/getallimagefiles')
+    return this.http.get('/getimagesforhome')
   }
   getIamgeById(imgid: any): Observable<any> {
     return this.http.get('/getimage/' + imgid , {responseType:'blob',observe:'response'})

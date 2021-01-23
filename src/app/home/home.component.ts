@@ -30,35 +30,34 @@ export class HomeComponent implements OnInit {
 
     this.imageTileService.getAllImages().subscribe(data => {
       for (let i = 0; i < data.length; i++) {
-        this.getImageBlobDataById(data[i].id, data[i].section, data[i].shortDescription);
+        this.getImageBlobDataById(data[i].id, data[i].section, data[i].shortDescription,data[i].date);
 
       }
     });
   }
 
   url1: any;
-  getImageBlobDataById(imgid: any, section: any, des: any): string {
+  getImageBlobDataById(imgid: any, section: any, des: any,date:any): string {
     let imgFile: any
     let imgURL: any;
     let imageElelemmt: any;
-    let date = new Date();
     this.imageTileService.getIamgeById(imgid).subscribe(data => {
       imgURL = URL.createObjectURL(data);
       imgFile = this.sanitizer.bypassSecurityTrustUrl(imgURL);
       this.url1 = imgFile;
 
       if (section == 'Sports') {
-        this.sportImageMap.set(imgid, [{ 'url': this.url1, 'description': des, 'date': date.getDay() + '/' + date.getDate() + '/' + date.getFullYear(), 'section': section }])
+        this.sportImageMap.set(imgid, [{ 'url': this.url1, 'description': des, 'date': date, 'section': section }])
 
       }
       else if (section == 'World') {
-        this.worldImageMap.set(imgid, [{ 'url': this.url1, 'description': des, 'date': date.getDay() + '/' + date.getDate() + '/' + date.getFullYear(), 'section': section }]);
+        this.worldImageMap.set(imgid, [{ 'url': this.url1, 'description': des, 'date': date, 'section': section }]);
 
 
 
       }
       else if (section == 'Entertainment')
-        this.entertainmentImageMap.set(imgid, [{ 'url': this.url1, 'description': des, 'date': date.getDay() + '/' + date.getDate() + '/' + date.getFullYear(), 'section': section }])
+        this.entertainmentImageMap.set(imgid, [{ 'url': this.url1, 'description': des, 'date': date, 'section': section }])
 
     })
     return imgFile;

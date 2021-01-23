@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import {FeedbackServiceService} from '../service/feedback-service.service'
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-feedback',
   templateUrl: './feedback.component.html',
@@ -12,7 +13,8 @@ export class FeedbackComponent implements OnInit {
 
   constructor(private fb:FormBuilder,
     private feedbackservice: FeedbackServiceService,
-    private toastr :ToastrService) { }
+    private toastr :ToastrService,
+    private route:Router) { }
   
   countries:string[]=['India','Bangladesh','Pakistan','Shri-lanka']
 
@@ -35,9 +37,6 @@ export class FeedbackComponent implements OnInit {
 
   submitFeedback(){
     console.log(this.feedback.value);
-    this.toastr.info('everything is broken', 'Major Error', {
-      timeOut: 3000,
-    });
     if(this.feedback.valid){
      this.feedbackData={
        name:this.feedback.controls['name'].value,
@@ -49,6 +48,7 @@ export class FeedbackComponent implements OnInit {
         console.log('Response: '+data);
         if(data!=null){
           this.toastr.success('Feedback sent successfully')
+          this.route.navigate(['/home']);
         }
         else{
           console.log('please enter valid data!!')
