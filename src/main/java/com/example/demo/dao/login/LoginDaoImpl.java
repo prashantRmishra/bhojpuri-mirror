@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class LoginDaoImpl implements LoginDao {
 
     public static PropertyFileReader propertyFileReader = new PropertyFileReader(
-            "src/main/java/com/example/demo/queries/login.json");
+            "demo/src/main/java/com/example/demo/queries/login.json");
 
     @Autowired
     JdbcTemplate jdbcTemplate;

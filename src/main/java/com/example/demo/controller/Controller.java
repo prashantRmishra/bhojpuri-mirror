@@ -37,12 +37,6 @@ public class Controller {
 
     @Autowired
     ImageDetailsService imageDetailsServie;
-
-    @GetMapping("/")
-    public String homePage() {
-        return "Welcome to bhojpuri mirror home page !!!";
-    }
-
     @PostMapping("/feedback")
     public String saveFeedback(@RequestBody FeedbackModel data) {
 
@@ -102,10 +96,18 @@ public class Controller {
         return this.imageDetailsServie.ImageDetails(data);
     }
 
+    //images for home page not more than 4, and of todays date
+    @GetMapping("/getimagesforhome")
+    public List<HomeTilePageModel> getImagesForHome() {
+        return this.imageDetailsServie.get4ImageDetails();
+    }
+
     @GetMapping("/getallimagefiles")
     public List<HomeTilePageModel> getAllImageDetails() {
         return this.imageDetailsServie.getAllImageDetails();
     }
+
+
 
     @GetMapping("/getimage/{imgid}")
     public ResponseEntity<ByteArrayResource> getImageById(@PathVariable String imgid) {
