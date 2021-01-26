@@ -1,59 +1,59 @@
 {
     "/feedback/*": {
         "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": false
+        "secure": true
     },
     "/hindisamacharpdf/*": {
         "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": false
+        "secure": true
     },
     "/getfile/*": {
         "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": false
+        "secure": true
     },
     "/getfiledetails/*": {
         "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": false
+        "secure": true
     },
     "/deletefiledetails/*": {
         "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": false
+        "secure": true
     },
     "/saveimage/*": {
         "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": false
+        "secure": true
     },
     "/getallimagefiles/*": {
         "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": false
+        "secure": true
     },
     "/getimagesforhome/*": {
         "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": false
+        "secure": true
     },
     "/getimage/*": {
         "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": false
+        "secure": true
     },
     "/getimagedescription/*": {
         "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": false
+        "secure": true
     },
     "/getallimageblobs/*": {
         "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": false
+        "secure": true
     },
     "/sectionimage/*":{
         "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": false
+        "secure": true
     },
     "/deleteimage/*":{
         "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": false
+        "secure": true
     },
     "/login/*":{
         "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": false
+        "secure": true
     }
 
 
