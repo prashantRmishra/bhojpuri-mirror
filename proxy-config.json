@@ -1,59 +1,59 @@
 {
     "/feedback/*": {
-        "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": true
+        "target": "http://localhost:8080",
+        "secure": false
     },
     "/hindisamacharpdf/*": {
-        "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": true
+        "target": "http://localhost:8080",
+        "secure": false
     },
     "/getfile/*": {
-        "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": true
+        "target": "http://localhost:8080",
+        "secure": false
     },
     "/getfiledetails/*": {
-        "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": true
+        "target": "http://localhost:8080",
+        "secure": false
     },
     "/deletefiledetails/*": {
-        "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": true
+        "target": "http://localhost:8080",
+        "secure": false
     },
     "/saveimage/*": {
-        "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": true
+        "target": "http://localhost:8080",
+        "secure": false
     },
     "/getallimagefiles/*": {
-        "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": true
+        "target": "http://localhost:8080",
+        "secure": false
     },
     "/getimagesforhome/*": {
-        "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": true
+        "target": "http://localhost:8080",
+        "secure": false
     },
     "/getimage/*": {
-        "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": true
+        "target": "http://localhost:8080",
+        "secure": false
     },
     "/getimagedescription/*": {
-        "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": true
+        "target": "http://localhost:8080",
+        "secure": false
     },
     "/getallimageblobs/*": {
-        "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": true
+        "target": "http://localhost:8080",
+        "secure": false
     },
     "/sectionimage/*":{
-        "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": true
+        "target": "http://localhost:8080",
+        "secure": false
     },
     "/deleteimage/*":{
-        "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": true
+        "target": "http://localhost:8080",
+        "secure": false
     },
     "/login/*":{
-        "target": "https://morning-atoll-76084.herokuapp.com",
-        "secure": true
+        "target": "http://localhost:8080",
+        "secure": false
     }
 
 
