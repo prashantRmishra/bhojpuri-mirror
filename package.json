@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy-config.json",
+    "heroku-postbuild": "ng build --prod &amp;&amp; npm install -g http-server-spa",
+    "start": "http-server-spa dist/bhojpuriMirrorClient index.html $PORT",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

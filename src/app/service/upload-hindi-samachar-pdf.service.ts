@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,28 +10,28 @@ import { map } from 'rxjs/operators'
 export class UploadHindiSamacharPDFService {
 
   constructor(private http: HttpClient) { }
-  url = '/hindisamacharpdf'
-
+  url = 'hindisamacharpdf'
+  baseUrl  = environment.baseUrl
   uplaodHindiSamacharPDF(hindisamacharPDFFormData): Observable<any> {
 
-    return this.http.post(this.url, hindisamacharPDFFormData, { responseType: 'text' });
+    return this.http.post(this.baseUrl+this.url, hindisamacharPDFFormData, { responseType: 'text' });
   }
 
   getHindiSamacharPdffile(fileId): Observable<any> {
-    return this.http.get('/getfile/'+fileId, { responseType: 'blob' }).pipe(map(res => {
+    return this.http.get(this.baseUrl+'getfile/'+fileId, { responseType: 'blob' }).pipe(map(res => {
       console.log('the response is ' + res)
 
       return res;
     }))
   }
   getHidiSamacharPdfFileDetailsForTableService():Observable<any>{
-    return this.http.get('/getfiledetails',{observe:'body'}).pipe(map(res=>{
+    return this.http.get(this.baseUrl+'getfiledetails',{observe:'body'}).pipe(map(res=>{
       console.log(res);
       return res;
     }))
   }
 
   deleteHindiSamacharFileDetails(fileid:any):Observable<any>{
-    return this.http.delete('/deletefiledetails/'+fileid,{observe:'response'});
+    return this.http.delete(this.baseUrl+'deletefiledetails/'+fileid,{observe:'response'});
   }
 }
