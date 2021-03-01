@@ -12,10 +12,9 @@ import { CreateNewArticleComponent } from './article/create-new-article/create-n
 
 
 const routes: Routes = [
-  {path:'',component:LoginComponent},
+  {path:'',component:HomeComponent},
   {path:'home',component:HomeComponent},
   {path:'bhojpurimirror',component:HomeComponent},
-  {path:'',component:HomeComponent},
   {path:'feedback',component:FeedbackComponent},
   {path:'hindisamacharpdf',component:HindiSamacharPDFComponent},
   {path:'pdf/:fileid',component:PdfViewerComponent},
