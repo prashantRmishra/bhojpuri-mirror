@@ -88,7 +88,9 @@ export class HindiSamacharPDFComponent implements OnInit, AfterViewInit {
   getHidiSamacharPdfFileDetailsForTable() {
     this.uploadHindiSamacharPDF.getHidiSamacharPdfFileDetailsForTableService().
       subscribe(data => {
-        console.log(data[0]['id'])
+        this.dataSource.data.length=0;
+        console.log(data);
+        if(data!=null)
         for (let index = 0; index < data.length; index++) {
           ELEMENT_DATA.push({
             date: data[index]['date'],

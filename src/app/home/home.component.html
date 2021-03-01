@@ -109,7 +109,7 @@
             <div class="col-md-3" *ngFor="let i of sportImageMap | keyvalue">
                 <mat-card>
                     <mat-card-header>
-                        <mat-card-title>Title</mat-card-title>
+                        <mat-card-title>{{sportImageMap.get(i.key)[0].title}}</mat-card-title>
                         <mat-card-subtitle>{{sportImageMap.get(i.key)[0].date}}</mat-card-subtitle>
                     </mat-card-header>
                     <img [attr.src]="sportImageMap.get(i.key)[0].url" routerLink="/article/{{i.key}}"
@@ -136,7 +136,7 @@
             <div class="col-md-3" *ngFor="let i of worldImageMap | keyvalue">
                 <mat-card>
                     <mat-card-header>
-                        <mat-card-title>Title</mat-card-title>
+                        <mat-card-title>{{worldImageMap.get(i.key)[0].title}}</mat-card-title>
                         <mat-card-subtitle>{{worldImageMap.get(i.key)[0].date}}</mat-card-subtitle>
                     </mat-card-header>
                     <img [attr.src]="worldImageMap.get(i.key)[0].url" routerLink="/article/{{i.key}}"
@@ -164,7 +164,7 @@
             <div class="col-md-3" *ngFor="let i of entertainmentImageMap | keyvalue">
                 <mat-card>
                     <mat-card-header>
-                        <mat-card-title>Title</mat-card-title>
+                        <mat-card-title>{{entertainmentImageMap.get(i.key)[0].title}}</mat-card-title>
                         <mat-card-subtitle>{{entertainmentImageMap.get(i.key)[0].date}}</mat-card-subtitle>
                     </mat-card-header>
                     <img [attr.src]="entertainmentImageMap.get(i.key)[0].url" routerLink="/article/{{i.key}}"

@@ -1,6 +1,6 @@
 <div class="container">
     <form [formGroup]="news">
-    <div class="row mt-5">
+    <div class="row mt-5" *ngIf="loggedIn=='true'">
         <div class="col-sm-10"></div>
         <div class="col-sm-1">
             <button mat-icon-button class="float-right" *ngIf="viewDetails">

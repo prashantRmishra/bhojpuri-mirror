@@ -30,14 +30,14 @@ export class HomeComponent implements OnInit {
 
     this.imageTileService.getAllImages().subscribe(data => {
       for (let i = 0; i < data.length; i++) {
-        this.getImageBlobDataById(data[i].id, data[i].section, data[i].shortDescription,data[i].date);
+        this.getImageBlobDataById(data[i].id, data[i].section, data[i].shortDescription,data[i].date,data[i].title);
 
       }
     });
   }
 
   url1: any;
-  getImageBlobDataById(imgid: any, section: any, des: any,date:any): string {
+  getImageBlobDataById(imgid: any, section: any, des: any,date:any,title:any): string {
     let imgFile: any
     let imgURL: any;
     let imageElelemmt: any;
@@ -47,17 +47,17 @@ export class HomeComponent implements OnInit {
       this.url1 = imgFile;
 
       if (section == 'Sports') {
-        this.sportImageMap.set(imgid, [{ 'url': this.url1, 'description': des, 'date': date, 'section': section }])
+        this.sportImageMap.set(imgid, [{ 'url': this.url1, 'description': des, 'date': date, 'section': section,'title':title }])
 
       }
       else if (section == 'World') {
-        this.worldImageMap.set(imgid, [{ 'url': this.url1, 'description': des, 'date': date, 'section': section }]);
+        this.worldImageMap.set(imgid, [{ 'url': this.url1, 'description': des, 'date': date, 'section': section,'title':title  }]);
 
 
 
       }
       else if (section == 'Entertainment')
-        this.entertainmentImageMap.set(imgid, [{ 'url': this.url1, 'description': des, 'date': date, 'section': section }])
+        this.entertainmentImageMap.set(imgid, [{ 'url': this.url1, 'description': des, 'date': date, 'section': section,'title':title  }])
 
     })
     return imgFile;

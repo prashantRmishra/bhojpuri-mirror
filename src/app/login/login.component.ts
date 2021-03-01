@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         if(res) {
           console.log(res)
           this.toastr.success('Logged In successfully !');
-        localStorage.setItem('jwtToken',res['payload']);
+        sessionStorage.setItem('jwtToken',res);
         this.route.navigate(['/home']);
       }
         else this.toastr.error('Invalid Credential');

@@ -32,7 +32,7 @@ export class ArticleComponent implements OnInit {
   shortDescription:any;
   news:FormGroup;
   imgid:any;
-
+  loggedIn:any='false';
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.imageFileId = params['fileid'];
@@ -45,6 +45,8 @@ export class ArticleComponent implements OnInit {
           this.section = data.section;
           this.shortDescription=data.shortDescription;
           this.imgid=data.id;
+          this.loggedIn = sessionStorage.getItem('jwtToken');
+          console.log('user is '+this.loggedIn);
         })
       })
     })
