@@ -25,7 +25,7 @@ public class LoginDaoImpl implements LoginDao {
     public boolean emailExist(User data) {
         List<User> user = null;
         try {
-            user = this.jdbcTemplate.query(propertyFileReader.getQuery("BM_CHECK_EMAIL_EXIST"),
+            user = this.jdbcTemplate.query("select * from users where email=? and password=?;",
                     new Object[] { data.getEmailId(), data.getPassword() }, new UserMapper());
         } catch (Exception e) {
             user = null;

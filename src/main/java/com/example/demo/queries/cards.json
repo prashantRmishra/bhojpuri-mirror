@@ -1,3 +1,0 @@
-{
-    "BN_GET_IMAGES_FOR_HOME_PAGE":"select * from imageDetails where date=? limit ?;"
-}

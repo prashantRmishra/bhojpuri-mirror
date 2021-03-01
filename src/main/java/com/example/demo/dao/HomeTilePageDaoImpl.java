@@ -42,7 +42,7 @@ public class HomeTilePageDaoImpl implements HomeTilePageDao {
     @Override
     public List<HomeTilePageModel> get4ImageDetails() {
         List<HomeTilePageModel> list = null;
-        list = jdbcTemplate.query(propertyFileReader.getQuery("BN_GET_IMAGES_FOR_HOME_PAGE"), new Object[]{new Date(),4}, new ImageMapper());
+        list = jdbcTemplate.query("select * from imageDetails where date=? limit ?;", new Object[]{new Date(),4}, new ImageMapper());
         return list.isEmpty() ? null : list;
     }
 

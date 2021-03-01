@@ -5,3 +5,5 @@ https://www.callicoder.com/spring-boot-file-upload-download-jpa-hibernate-mysql-
 #### how to merge angular and spring boot app as single jar file using gradle
 https://ordina-jworks.github.io/architecture/2018/10/12/spring-boot-angular-gradle.html
 
+#### How to add interceptors in your spring boot app
+https://www.baeldung.com/spring-mvc-handlerinterceptor
