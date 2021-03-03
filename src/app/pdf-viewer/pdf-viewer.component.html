@@ -1,14 +1,15 @@
-<div class="container font-style">
+<div class="container-fluid font-style">
     <div class="row">
         <div class="col-sm-6 text-left">
-            <button mat-icon-button matTooltip="Back"
+            <button mat-icon-button matTooltip="Back" 
             (click)="goBack()">
                 <mat-icon>arrow_back</mat-icon>
             </button>
         </div>
         <div class="col-sm-6 text-right">
 
-            <button mat-icon-button matTooltip="Options" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <button mat-icon-button matTooltip="Options"
+             [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">

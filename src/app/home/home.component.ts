@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
 
     this.imageTileService.getAllImages().subscribe(data => {
+      if(data!=null || data!=undefined)
       for (let i = 0; i < data.length; i++) {
         this.getImageBlobDataById(data[i].id, data[i].section, data[i].shortDescription,data[i].date,data[i].title);
 

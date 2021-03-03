@@ -35,6 +35,12 @@ mat-card-subtitle{
 }
 /* Article title */
 .article-title{
-    font-size: xxx-large !important;
+    font-size: initial;
     font-weight: bold;
+}
+/* Removing Default anchor color  */
+a {
+    color: inherit !important;
+    font-size: smaller !important;
+    
 }

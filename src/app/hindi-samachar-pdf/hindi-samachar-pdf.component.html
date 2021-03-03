@@ -1,5 +1,5 @@
 <div class="container">
-    <form [formGroup]="uploadPdfFile">
+    <form [formGroup]="uploadPdfFile" *ngIf="loggedIn!=''">
         <div class="row mt-5">
             <div class="col-sm-6 " >
                 <mat-form-field class="full-width">
@@ -37,7 +37,10 @@
             <ng-container matColumnDef="delete">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
                 <td mat-cell *matCellDef="let element">
-                    <button mat-icon-button matTooltip="Delete"><mat-icon (click)="deleteFile(element.number,element.pdf)">delete</mat-icon></button>
+                    <button mat-icon-button matTooltip="Delete" *ngIf="loggedIn!='';else normal_user"><mat-icon (click)="deleteFile(element.number,element.pdf)">delete</mat-icon></button>
+                    <ng-template #normal_user>
+                        <button mat-icon-button matTooltip="read"><mat-icon (click)="openfile(element.number)" >import_contacts</mat-icon></button>
+                    </ng-template>
                 </td>
             </ng-container>
             <!--delete column ends-->

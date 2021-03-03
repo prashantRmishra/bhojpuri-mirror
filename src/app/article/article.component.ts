@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { ModelPopupComponent } from '../popup/model-popup/model-popup.component';
+import { CompCommunicationService } from '../service/componentCommunication/comp-communication.service';
 
 @Component({
   selector: 'app-article',
@@ -20,7 +21,8 @@ export class ArticleComponent implements OnInit {
     private toastr:ToastrService,
     private fb : FormBuilder,
     private router:Router,
-    private dialog:MatDialog) { }
+    private dialog:MatDialog,
+    private compCommunication:CompCommunicationService) { }
 
 
   imageFile: any;
@@ -32,8 +34,15 @@ export class ArticleComponent implements OnInit {
   shortDescription:any;
   news:FormGroup;
   imgid:any;
-  loggedIn:any='false';
+  loggedIn:any='';
+
   ngOnInit(): void {
+    this.loggedIn = sessionStorage.getItem('jwtToken');
+    if(this.loggedIn==undefined || this.loggedIn==null)
+    this.compCommunication.loggedInuser.subscribe(data=>{
+      this.loggedIn=data;
+     
+    })
     this.route.params.subscribe(params => {
       this.imageFileId = params['fileid'];
       this.imageservice.getIamgeById(this.imageFileId).subscribe(data => {
@@ -45,8 +54,6 @@ export class ArticleComponent implements OnInit {
           this.section = data.section;
           this.shortDescription=data.shortDescription;
           this.imgid=data.id;
-          this.loggedIn = sessionStorage.getItem('jwtToken');
-          console.log('user is '+this.loggedIn);
         })
       })
     })

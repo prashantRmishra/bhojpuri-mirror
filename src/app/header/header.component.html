@@ -1,5 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-  <a class="navbar-brand"><img class="img-fluid rounded" src="/assets/icons/bhojpurimirroricon.jpg" matTooltip="BhojpuriMirror"></a>
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm p-3 " style="background-color: #F8F8FF">
+  <!--kitten white is nav's bg color-->
+  <a class="navbar-brand"><img class="img-fluid rounded" src="/assets/icons/bhojpurimirroricon.jpg" matTooltip="Home"
+    routerLink="/home"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -7,45 +9,64 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <!-- <li class="nav-item active">
         <a class="nav-link" routerLink="/home">
           <mat-icon class="header-icon" matTooltip="Home page">home</mat-icon>
         </a>
-      </li>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link" routerLink="/hindisamacharpdf">
           <mat-icon class="header-icon" matTooltip="HindiSamachar PDF">picture_as_pdf</mat-icon>
         </a>
       </li>
 
-      <!-- <li class="nav-item">
-          <a class="nav-link " href="#">Worklife</a>
+      <li class="nav-item">
+          <a class="nav-link" routerLink="/section/Sports" matTooltip="Sports news">Sports</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link " href="#">Travel</a>
+            <a class="nav-link " routerLink="/section/Entertainment" matTooltip="Entertainment news">Entertainment</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="#">Sport</a>
-          </li> -->
+            <a class="nav-link " routerLink="/section/World" matTooltip="World news">Worlds</a>
+          </li>
     </ul>
     <ul class="navbar-nav ml-auto header-icon">
-      <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="More">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="/feedback">
-          <mat-icon>feedback</mat-icon>
-          <span>Feedback</span>
-        </button>
-        <button mat-menu-item routerLink="/login">
-          <mat-icon matTooltip="Login">login</mat-icon>
-          <span>Login</span>
-        </button>
-        <button mat-menu-item routerLink="/newarticle" >
-          <mat-icon matTooltip="Add article">add</mat-icon>
-          <span>Create Article</span>
-        </button>
-      </mat-menu>
+      <li class="nav-item" *ngIf="loggedIn!=''">
+        <a class="nav-link " >
+         <button mat-icon-button [matMenuTriggerFor]="user" matTooltip="{{loggedIn}}">
+          <mat-icon class="header-icon">account_circle</mat-icon>
+         </button>
+         <mat-menu #user="matMenu">
+          <button mat-menu-item (click)="logout()">
+            <mat-icon matTooltip="logout">logout</mat-icon>
+            <span>Logout</span>
+          </button>
+          </mat-menu>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">
+          <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="More">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="/login" *ngIf="loggedIn==''">
+              <mat-icon matTooltip="Login">login</mat-icon>
+              <span>Login</span>
+            </button>
+          
+            <button mat-menu-item routerLink="/newarticle" *ngIf="loggedIn!=''" >
+              <mat-icon matTooltip="Add article">add</mat-icon>
+              <span>Create Article</span>
+            </button>
+            <button mat-menu-item routerLink="/feedback">
+              <mat-icon matTooltip="Feedback">feedback</mat-icon>
+              <span>Feedback</span>
+            </button>
+           
+          </mat-menu>
+        </a>
+      </li>
 
     </ul>
   </div>

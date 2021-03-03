@@ -20,9 +20,12 @@ export class SectionTabComponent implements OnInit {
   sectionMap = new Map();
   url:any;
   ngOnInit(): void {
+    this.sectionMap.clear();
+    console.log('section tab');
     this.router.params.subscribe(data=>{
       this.section  = data['sectionname'];
       this.sectionService.getAllImagesForSection(this.section).subscribe(data=>{
+        if(data!=null || data!=undefined)
         for(let i=0;i<data.length; i++ ){
           let imgFile:any;
           this.imageTileService.getIamgeById(data[i].id).subscribe(response=>{

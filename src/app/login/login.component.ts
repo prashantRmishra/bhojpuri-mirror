@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {LoginService} from '../service/login/login.service'
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import {CompCommunicationService} from '../service/componentCommunication/comp-communication.service'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +14,8 @@ export class LoginComponent implements OnInit {
   constructor(private fb:FormBuilder,
     private loginService:LoginService,
     private toastr:ToastrService,
-    private route:Router) { }
+    private route:Router,
+    private compCommunication:CompCommunicationService) { }
 
   login:FormGroup;
   ngOnInit(): void {
@@ -35,9 +37,12 @@ export class LoginComponent implements OnInit {
     if(userLoginData.emailId!=undefined && userLoginData.password!=undefined){
       this.loginService.loginUser(userLoginData).subscribe(res=>{
         if(res) {
-          console.log(res)
+         
           this.toastr.success('Logged In successfully !');
-        sessionStorage.setItem('jwtToken',res);
+        sessionStorage.setItem('jwtToken',res.token);
+        sessionStorage.setItem('user',userLoginData.emailId);
+        /* setting obseervable username , so that it's realtime value can be accessed */
+        this.compCommunication.setUserNameForSuccesfullLogin(userLoginData.emailId);
         this.route.navigate(['/home']);
       }
         else this.toastr.error('Invalid Credential');

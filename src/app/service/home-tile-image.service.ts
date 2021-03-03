@@ -12,7 +12,7 @@ export class HomeTileImageService {
 
   baseUrl = environment.baseUrl;
   saveImageService(file): Observable<any> {
-    return this.http.post(this.baseUrl+'saveimage',file)
+    return this.http.post(this.baseUrl+'saveimage',file,{headers:this.getHeader()})
   }
 
   deleteImageFIle(imgId:any) : Observable<any>{
@@ -34,7 +34,7 @@ export class HomeTileImageService {
   }
 
   private getHeader(){
-    return new HttpHeaders({'Authorization':'Bearer '+localStorage.getItem('token')});
+    return new HttpHeaders({'Authorization':'Bearer '+sessionStorage.getItem('jwtToken')});
   }
 
 }

@@ -8,6 +8,7 @@ import { MatSort } from '@angular/material/sort';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog'
 import { ModelPopupComponent } from '../popup/model-popup/model-popup.component';
+import { CompCommunicationService } from '../service/componentCommunication/comp-communication.service';
 @Component({
   selector: 'app-hindi-samachar-pdf',
   templateUrl: './hindi-samachar-pdf.component.html',
@@ -19,7 +20,8 @@ export class HindiSamacharPDFComponent implements OnInit, AfterViewInit {
     private uploadHindiSamacharPDF: UploadHindiSamacharPDFService,
     private router: Router,
     private toastr: ToastrService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private comCommunication:CompCommunicationService) { }
   @ViewChild(MatPaginator) paginator: MatPaginator
   @ViewChild(MatSort) sort: MatSort;
   columnName: string[] = ['number', 'date', 'pdf', 'delete'];
@@ -29,9 +31,19 @@ export class HindiSamacharPDFComponent implements OnInit, AfterViewInit {
   uploadPDF: boolean = false;
   uploadPdfFile: FormGroup;
   file: File;
-
+  loggedIn='';
 
   ngOnInit(): void {
+    /* Admin user code */
+    this.loggedIn = sessionStorage.getItem('jwtToken');
+   
+    if(this.loggedIn==undefined || this.loggedIn==null)
+    this.comCommunication.loggedInuser.subscribe(data=>{
+      this.loggedIn=data;
+     
+    })
+    /* Admin user code finish */
+
     this.uploadPdfFile = this.fb.group({
       fileName: [],
 

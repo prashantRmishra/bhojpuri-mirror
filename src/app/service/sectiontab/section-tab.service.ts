@@ -12,11 +12,11 @@ export class SectionTabService {
   constructor(private http:HttpClient) { }
 
   getAllImagesForSection(section:string):Observable<any>{
-    return this.http.get(this.baseUrl+'sectionimage/'+section,{headers: this.getHeaders()})
+    return this.http.get(this.baseUrl+'sectionimage/'+section)
   }
 
   private  getHeaders():HttpHeaders{
-    return new HttpHeaders({'Authorization':'Bearer '+localStorage.getItem('token')});
+    return new HttpHeaders({'Authorization':'Bearer '+sessionStorage.getItem('jwtToken')});
   }
 
 }

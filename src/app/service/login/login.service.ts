@@ -12,10 +12,8 @@ export class LoginService {
   constructor(private http:HttpClient) { }
 
   loginUser(credentials):Observable<any>{
-    return this.http.post(this.baseUrl+'login',credentials,{headers:this.getHeader()});
+    return this.http.post(this.baseUrl+'login',credentials);
   }
 
-  private getHeader(){
-    return new HttpHeaders({'Authorization':'Bearer '+localStorage.getItem('jwtToken')});
-  }
+ 
 }
