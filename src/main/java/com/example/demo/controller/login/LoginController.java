@@ -36,7 +36,7 @@ public class LoginController {
     @Autowired
     LoginService loginService;
     Logger logger   = LogManager.getLogger(LoginController.class);
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins =  {"http://localhost:4200","https://bhojpuri-mirror.herokuapp.com"})
     @PostMapping("/login")
     public ResponseEntity<Object> checkEmail(@RequestBody UserBean data) throws Exception{
       UserBean userBean = this.loginService.emailExist(data); 
