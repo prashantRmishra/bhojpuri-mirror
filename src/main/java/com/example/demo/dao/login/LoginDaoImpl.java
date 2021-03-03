@@ -3,7 +3,7 @@ package com.example.demo.dao.login;
 import java.util.List;
 
 import com.example.demo.dao.login.rowmapper.UserMapper;
-import com.example.demo.model.User;
+import com.example.demo.model.UserBean;
 import com.example.demo.utility.PropertyFileReader;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,21 +22,34 @@ public class LoginDaoImpl implements LoginDao {
     JdbcTemplate jdbcTemplate;
 
     @Override
-    public boolean emailExist(User data) {
-        List<User> user = null;
+    public UserBean emailExist(UserBean data) {
+        List<UserBean> user = null;
         try {
-            user = this.jdbcTemplate.query("select * from users where email=? and password=?;",
-                    new Object[] { data.getEmailId(), data.getPassword() }, new UserMapper());
+            user = this.jdbcTemplate.query("select * from users where email=?;",
+                    new Object[] { data.getEmailId()}, new UserMapper());
         } catch (Exception e) {
             user = null;
         }
-        return !user.isEmpty();
+        return !user.isEmpty() ? user.get(0):null;
     }
 
     @Override
-    public boolean logUser(User data) {
+    public boolean logUser(UserBean data) {
 
         return false;
+    }
+
+    @Override
+    public UserBean getUser(String email) {
+        List<UserBean> user = null;
+        try {
+            user = this.jdbcTemplate.query("select * from users where email=?;",
+                    new Object[] {email}, new UserMapper());
+        } catch (Exception e) {
+            user = null;
+        }
+       
+        return user.get(0);
     }
 
 }

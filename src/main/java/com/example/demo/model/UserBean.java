@@ -1,6 +1,6 @@
 package com.example.demo.model;
 
-public class User {
+public class UserBean {
     private String emailId;
     private String password;
     private String otp;

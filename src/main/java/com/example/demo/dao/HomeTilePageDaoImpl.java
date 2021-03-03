@@ -68,7 +68,7 @@ public class HomeTilePageDaoImpl implements HomeTilePageDao {
     @Override
     public List<HomeTilePageModel> getAllImagesForSection(String section) {
         List<HomeTilePageModel> list = null;
-        list = jdbcTemplate.query("select * from imageDetails where section = ? and date in(?,?);",new Object[]{section,new Date(),dateUtil.createYesterdaysDate()}, new SectionImageMapper());
+        list = jdbcTemplate.query("select * from imageDetails where section = ? and (date <=? and date >=?);",new Object[]{section,new Date(),dateUtil.createYesterdaysDate()}, new SectionImageMapper());
         return list.isEmpty() ? null : list;
     }
 
