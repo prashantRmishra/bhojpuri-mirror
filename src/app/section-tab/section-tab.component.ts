@@ -35,6 +35,8 @@ export class SectionTabComponent implements OnInit {
             'date':data[i].date,'shortDes':data[i].shortDescription}])
           })
         }
+        document.getElementById('sectionData').style.display='block';
+        document.getElementById('spinner').style.display='none';
       })
     })
   }

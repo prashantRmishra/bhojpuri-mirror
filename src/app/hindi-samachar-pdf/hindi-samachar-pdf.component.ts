@@ -114,6 +114,8 @@ export class HindiSamacharPDFComponent implements OnInit, AfterViewInit {
 
         }
         this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+        document.getElementById('hindisamacharpdf').style.display='block';
+        document.getElementById('spinner').style.display='none';
         setTimeout(() => {this.dataSource.paginator = this.paginator;
         this.dataSource.sort=this.sort});
 

@@ -34,7 +34,12 @@ export class HomeComponent implements OnInit {
         this.getImageBlobDataById(data[i].id, data[i].section, data[i].shortDescription,data[i].date,data[i].title);
 
       }
+      this.hideSpinner();
+      document.getElementById('homeData').style.display='block';
     });
+  }
+  hideSpinner(){
+    document.getElementById('spinner').style.display='none';
   }
 
   url1: any;

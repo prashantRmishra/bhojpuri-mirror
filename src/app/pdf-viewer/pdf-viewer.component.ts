@@ -38,6 +38,11 @@ export class PdfViewerComponent implements OnInit {
           console.log(this.fileURL)
           this.pdfSrc = this.fileURL;
         }
+        if(this.pdfSrc!='' && this.pdfSrc!=null && this.pdfSrc!=undefined){
+          document.getElementById('viewpdf').style.display='block';
+          document.getElementById('spinner').style.display='none';
+        }
+        
       })
   }
   pdfSrc = "";

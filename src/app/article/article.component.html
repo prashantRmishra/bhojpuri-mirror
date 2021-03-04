@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" id="viewarticle" style="display: none;">
     <form [formGroup]="news">
     <div class="row">
         <div class="col-sm-12 text-right" *ngIf="loggedIn!=''">
@@ -88,3 +88,13 @@
     </div>
 </form>
 </div>
+
+<div class="mt-5" id="spinner">
+    <div class="row">
+       <div class="col-sm-12 text-center ">
+         <div class="spinner-grow text-secondary"  role="status">
+             <span class="sr-only">Loading...</span>
+           </div>
+       </div>
+    </div>
+   </div>

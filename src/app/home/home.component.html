@@ -1,101 +1,4 @@
-<div class="container">
-
-    <!--for loop of list of tiles-->
-    <!-- <div *ngFor="let list of listOfTiles;let id=index">
-        <div class="row">
-            <div class="col">{{list[0].section}}</div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <mat-grid-list cols="4" rowHeight="100px" class="shadow p-3 mb-5 bg-white rounded">
-                    <mat-grid-tile *ngFor="let tile of list;let i=index" [colspan]="tile.cols" [rowspan]="tile.rows"
-                        [style.background]="tile.color">
-                        <img [src]="tile.imgSrc" routerLink="/article/{{i}}">
-                        <mat-grid-tile-footer>
-                            <h3><a routerLink="/article/{{i}}">{{tile.text}} of list {{id}}</a></h3>
-                        </mat-grid-tile-footer>
-                    </mat-grid-tile>
-                </mat-grid-list>
-            </div>
-        </div>
-    </div> -->
-    <!--inish of for loop of list of tiles-->
-
-    <!--sports section-->
-    <!-- <div class="row">
-        <div class="col">
-            {{sportsList[0].section}}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <mat-grid-list cols="4" rowHeight="100px">
-                <mat-grid-tile [colspan]="3" [rowspan]="4">
-                    <img [src]="" name="xvb" routerLink="/article/1">
-                    <mat-grid-tile-footer>
-                        <h3><a routerLink="/article/1">sdfghgfds</a></h3>
-                    </mat-grid-tile-footer>
-                </mat-grid-tile>
-                <mat-grid-tile [colspan]="sportsList[1].cols" [rowspan]="sportsList[1].rows">
-                    <img [src]="" [name]="sportsList[1].id" routerLink="/article/{{sportsList[1].id}}">
-                    <mat-grid-tile-footer>
-                        <h3><a routerLink="/article/{{sportsList[1].id}}">{{sportsList[1].text}}</a></h3>
-                    </mat-grid-tile-footer>
-                </mat-grid-tile>
-                <mat-grid-tile [colspan]="sportsList[2].cols" [rowspan]="sportsList[2].rows">
-                    <img [src]="" [name]="sportsList[2].id" routerLink="/article/{{sportsList[2].id}}">
-                    <mat-grid-tile-footer>
-                        <h3><a routerLink="/article/{{sportsList[2].id}}">{{sportsList[2].text}}</a></h3>
-                    </mat-grid-tile-footer>
-                </mat-grid-tile>
-                <mat-grid-tile [colspan]="sportsList[3].cols" [rowspan]="sportsList[3].rows">
-                    <img [src]="" [name]="sportsList[3].id" routerLink="/article/{{sportsList[3].id}}">
-                    <mat-grid-tile-footer>
-                        <h3><a routerLink="/article/{{sportsList[3].id}}">{{sportsList[3].text}}</a></h3>
-                    </mat-grid-tile-footer>
-                </mat-grid-tile>
-            </mat-grid-list>
-        </div>
-    </div> -->
-
-
-    <!--world section-->
-    <!-- <div class="row">
-        <div class="col">
-            {{worldsList[0].section}}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <mat-grid-list cols="4" rowHeight="100px">
-                <mat-grid-tile *ngFor="let tile of worldsList" [colspan]="tile.cols" [rowspan]="tile.rows">
-                    <img [src]="tile.imgSrc" routerLink="/article/{{tile.id}}">
-                    <mat-grid-tile-footer>
-                        <h3><a routerLink="/article/{{tile.id}}">{{tile.text}} of id {{tile.id}}</a></h3>
-                    </mat-grid-tile-footer>
-                </mat-grid-tile>
-            </mat-grid-list>
-        </div>
-    </div> -->
-
-    <!--Entertainment Section-->
-    <!-- <div class="row">
-        <div class="col">
-            {{entertainmentList[0].section}}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <mat-grid-list cols="4" rowHeight="100px">
-                <mat-grid-tile *ngFor="let tile of entertainmentList" [colspan]="tile.cols" [rowspan]="tile.rows">
-                    <img [src]="tile.imgSrc" routerLink="/article/{{tile.id}}">
-                    <mat-grid-tile-footer>
-                        <h3><a routerLink="/article/{{tile.id}}">{{tile.text}} of id {{tile.id}}</a></h3>
-                    </mat-grid-tile-footer>
-                </mat-grid-tile>
-            </mat-grid-list>
-        </div>
-    </div> -->
+<div class="container" style="display: none;" id="homeData">
     <div *ngIf="sportImageMap.size!=0">
         <div class="row border-bottom">
             <div class="col-md-6">
@@ -184,3 +87,13 @@
 </div> -->
 
 </div>
+<div class="mt-5" id="spinner">
+   <div class="row">
+      <div class="col-sm-12 text-center ">
+        <div class="spinner-grow text-secondary"  role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+      </div>
+   </div>
+  </div>
+  

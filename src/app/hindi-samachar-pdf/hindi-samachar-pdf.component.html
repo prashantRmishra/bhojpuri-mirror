@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id="hindisamacharpdf" style="display: none;">
     <form [formGroup]="uploadPdfFile" *ngIf="loggedIn!=''">
         <div class="row mt-5">
             <div class="col-sm-6 " >
@@ -50,3 +50,12 @@
         <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </div>
 </div>
+<div class="mt-5" id="spinner">
+    <div class="row">
+       <div class="col-sm-12 text-center ">
+         <div class="spinner-grow text-secondary"  role="status">
+             <span class="sr-only">Loading...</span>
+           </div>
+       </div>
+    </div>
+   </div>

@@ -54,8 +54,15 @@ export class ArticleComponent implements OnInit {
           this.section = data.section;
           this.shortDescription=data.shortDescription;
           this.imgid=data.id;
+          if(this.title!=null && this.title!=undefined && this.title!=''){
+            document.getElementById('viewarticle').style.display='block';
+            document.getElementById('spinner').style.display='none';
+          }
         })
       })
+     
+
+     
     })
 
 
