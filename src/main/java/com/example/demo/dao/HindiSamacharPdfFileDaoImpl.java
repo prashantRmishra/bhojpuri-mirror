@@ -6,6 +6,7 @@ import java.util.List;
 import com.example.demo.dao.rowmapper.FileDetailsOfSamacharMapper;
 import com.example.demo.dao.rowmapper.HindiSamacharPdfFileMapper;
 import com.example.demo.model.HindiSamacharPdfFileModel;
+import com.example.demo.utility.DateManupulator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -22,8 +23,10 @@ public class HindiSamacharPdfFileDaoImpl implements HindiSamacharPdfFileDao {
     @Override
     public boolean saveHindiSamacharPdfFile(HindiSamacharPdfFileModel data) {
         int res = 0;
+        int deleteRecord=0;
         try {
-
+            deleteRecord+=jdbcTemplate.update("delete from hindisamacharpdf where date <=?",
+            new Object[]{(new DateManupulator()).createYesterdaysDate(-4)});
             res += jdbcTemplate.update("insert into hindisamacharpdf(filename,filetype,filedata,date) values(?,?,?,?)",
                     new Object[] { data.getFilename(), data.getFileType(), data.getFileData(), data.getDate() });
 

@@ -29,7 +29,10 @@ public class HomeTilePageDaoImpl implements HomeTilePageDao {
     @Override
     public boolean saveImageDetails(HomeTilePageModel data) {
         int result = 0;
+        int deleteRecord =0;
         try {
+            deleteRecord+=this.jdbcTemplate.update("delete from imagedetails where date <=?",
+            new Object[]{(new DateManupulator()).createYesterdaysDate(-3)});
             result += this.jdbcTemplate.update("insert into imageDetails(filename,filetype,filedata,newsdescription,section,date,title,short_description) values(?,?,?,?,?,?,?,?)",
                     new Object[] { data.getFilename(), data.getFiletype(), data.getData() ,data.getNewsDescription(),data.getSection(),
                     new Date(),data.getTitle(),data.getShortDescription()});
@@ -49,7 +52,7 @@ public class HomeTilePageDaoImpl implements HomeTilePageDao {
     @Override
     public List<HomeTilePageModel> getAllImageDetails() {
         List<HomeTilePageModel> list = null;
-        list = jdbcTemplate.query("select * from imageDetails where date=? and date=?;",new Object[]{new Date(),dateUtil.createYesterdaysDate()}, new ImageMapper());
+        list = jdbcTemplate.query("select * from imageDetails where date=? and date=?;",new Object[]{new Date(),dateUtil.createYesterdaysDate(-1)}, new ImageMapper());
         return list.isEmpty() ? null : list;
     }
 
@@ -68,7 +71,7 @@ public class HomeTilePageDaoImpl implements HomeTilePageDao {
     @Override
     public List<HomeTilePageModel> getAllImagesForSection(String section) {
         List<HomeTilePageModel> list = null;
-        list = jdbcTemplate.query("select * from imageDetails where section = ? and (date <=? and date >=?);",new Object[]{section,new Date(),dateUtil.createYesterdaysDate()}, new SectionImageMapper());
+        list = jdbcTemplate.query("select * from imageDetails where section = ? and (date <=? and date >=?);",new Object[]{section,new Date(),dateUtil.createYesterdaysDate(-2)}, new SectionImageMapper());
         return list.isEmpty() ? null : list;
     }
 

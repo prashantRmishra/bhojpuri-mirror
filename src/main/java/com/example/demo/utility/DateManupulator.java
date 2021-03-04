@@ -7,10 +7,10 @@ import java.util.Date;
 
 public class DateManupulator {
 
-    public Date createYesterdaysDate(){
+    public Date createYesterdaysDate(int number){
         Date today = new Date();
         Calendar yesterday = Calendar.getInstance();
-        yesterday.add(Calendar.DATE, -2);
+        yesterday.add(Calendar.DATE, number);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         try {
             String dateString = format.format(yesterday.getTime());
