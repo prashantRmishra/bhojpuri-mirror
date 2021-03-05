@@ -75,7 +75,7 @@ example:
  ```
  ***
  **_Changes to be made in SpringBoot App_** </br>
- _You must handle CORS (Cross Origin Resource Sharing)_
+ _You must handle CORS (Cross Origin Resource Sharing)_</br>
  For all the ```Controllers.java``` add annotation ```@CrossOrigin```
  
  
@@ -127,7 +127,7 @@ If tables are not created automatically, then you will have to import your local
 2.create new connection to your Heroku .postgres server with pgAdmin.</br>
  _(All the Heroku postgres Credentials will be present in Database credentials on your Heroku app)_ </br>
 3.Import your backup in your Heroku postgres db. </br>
-4.You shoul see all the table in Heroku postgres db. </br>
+4.You should see all the table in Heroku postgres db. </br>
 
 
 
